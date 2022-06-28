@@ -12,27 +12,56 @@ const prm = {
     dist: "./dist/"
 }
 
-let container = fs.readFileSync(prm.src + prm.components + "container.html", 'utf-8');
-let header = fs.readFileSync(prm.src + prm.components + "header.html", 'utf-8');
-let footer = fs.readFileSync(prm.src + prm.components + "footer.html", 'utf-8');
-
-const content = [];
-
-let index = fs.readFileSync(prm.src + prm.content + "index.html", 'utf-8');
-
-const dom = new JSDOM(container);
-
-const headerHTML = JSDOM.fragment(header);
-const footerHTML = JSDOM.fragment(footer);
-
-const indexHTML = JSDOM.fragment(index);
-
-const wrapperNode = dom.window.document.querySelector("#wrapper");
-
-for (let node of [headerHTML, indexHTML, footerHTML]) {
-    wrapperNode.appendChild(node);
+const htmlFrag = (file, prefix) => {
+    let f = fs.readFileSync(prefix + file, 'utf-8');
+    f = fm(f);
+    fHTML = JSDOM.fragment(f.body)
+    return {
+        link_: file,
+        attributes: f.attributes,
+        content: fHTML,
+    }
 }
 
-console.log(dom.window.document.title);
+let container = fs.readFileSync(prm.src + prm.components + "container.html", 'utf-8');
 
-fs.writeFileSync("./dist/"+"index.html", dom.window.document.documentElement.outerHTML);
+const header = htmlFrag("header.html", prm.src + prm.components);
+const footer = htmlFrag("footer.html", prm.src + prm.components);
+
+let contents = fs.readdirSync(prm.src+prm.content);
+contents = contents.map((file) => htmlFrag(file, prm.src + prm.content)).sort((a,b) => a.attributes.level < b.attributes.level ? -1 : 1);
+
+/* const dom = new JSDOM(container); */
+
+// populate menu items
+const menuNode = header.content.querySelector("#mainmenu ul");
+for (let content of contents) {
+    let tempFrag = JSDOM.fragment(`<li><a></a></li>`);
+    let a = tempFrag.querySelector("a");
+    let link = "./" + content.link_;
+    let title = content.attributes.title;
+    a.href = link;
+    a.textContent = title;
+    menuNode.appendChild(tempFrag);
+}
+
+for (let content of contents) {
+    let dom = new JSDOM(container);
+    let wrapperNode = dom.window.document.querySelector("#wrapper");
+    let newHead = header.content;
+    let newFoot = footer.content;
+
+    for (let child of [
+        newHead,
+        content.content, 
+        newFoot,
+    ]) {
+        console.log
+        wrapperNode.appendChild(child);
+    }
+    dom.window.document.title = "Renz Torres | " + content.attributes.title;
+
+
+
+    fs.writeFileSync(prm.dist + content.link_, dom.window.document.documentElement.outerHTML);
+}
