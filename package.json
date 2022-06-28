@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/renzst/statique#readme",
   "dependencies": {
+    "front-matter": "^4.0.2",
     "jsdom": "^20.0.0"
   }
 }
