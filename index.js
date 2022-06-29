@@ -2,6 +2,7 @@ const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 const fs = require('fs');
 const fm = require('front-matter');
+const {marked} = require('marked');
 
 const prm = require('./config.js');
 
@@ -96,4 +97,14 @@ const main = () => {
 
 }
 
-main();
+function MDtoJSDOM(filePath) {
+    let file = fs.readFileSync(filePath, 'utf-8');
+    file = fm(file);
+    file.body = marked.parse(file.body);
+    return file;
+}
+
+let f = MDtoJSDOM("./src/content/projects/fgs.md");
+console.log(f);
+
+//main();
