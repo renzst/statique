@@ -106,6 +106,12 @@ function MDtoJSDOM(filePath) {
 }
 
 let f = MDtoJSDOM("./src/content/projects/fgs.md");
-console.log(f);
+
+const contents = fs.readdirSync(prm.parameters.src+prm.parameters.content).filter(file => file.includes(".html")).map(file => createHTMLFragment(file, prm.parameters.src + prm.parameters.content)).sort((a,b) => a.attributes.level < b.attributes.level ? -1 : 1);
+const files = contents.map(content => createHTMLFile(contents, content));
+
+f = createHTMLFile(contents, f);
+
+fs.writeFileSync(f.outputFilePath, f.html);
 
 //main();
