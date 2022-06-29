@@ -4,6 +4,7 @@ id: "fgs"
 description: "My work establishing and growing a Gainesville delivery food pantry"
 tags: ["food sovereignty", "food access", "Gainesville", "Alachua County", "nonprofit", "coordination", "mutual aid"]
 level: 1
+articleType: single
 ---
 
 # Free Grocery Store

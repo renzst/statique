@@ -101,6 +101,7 @@ function MDtoJSDOM(filePath) {
     let file = fs.readFileSync(filePath, 'utf-8');
     file = fm(file);
     file.body = marked.parse(file.body);
+    file.body = JSDOM.fragment(`<main><article class="card ${file.attributes.articleType}">${file.body}</article></main>`)
     return file;
 }
 
