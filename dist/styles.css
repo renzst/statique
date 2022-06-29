@@ -8,7 +8,7 @@
 
     --bodyFonts: "Fira Sans", "Arimo", "Liberation Sans", "Arial", "Helvetica", sans-serif;
     --emphasisFonts: "Source Serif Pro", "Liberation Serif", "Garamond", "Times New Roman", serif;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
 }
 
 * > :focus {
@@ -73,14 +73,6 @@ h1, h2, h3, h4, h5, h6 {
 
     .borderAround {
         border: 1px solid var(--andropogon)
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-        color: white;
-    }
-
-    a {
-        color: var(--andropogon);
     }
 }
 
@@ -201,7 +193,8 @@ main {
 
 article.single {
     display: block;
-    padding: var(--gap);
+    padding: calc(var(--gap)*2);
+
 }
 
 article.carousel {
@@ -262,6 +255,7 @@ footer {
     grid-template-areas:
         "contact"
         "copyright";
+    padding: calc(var(--gap)*2)
 }
 
 @media only screen and (min-width: 48em) {
@@ -294,6 +288,9 @@ footer #copyright {
 
 /* Individual elements */
 
+section {
+    padding: calc(var(--gap)*2);
+}
 
 h1, h2, h3 {
     text-align: center;
@@ -418,5 +415,13 @@ button:hover, button:active {
     button:hover, button:active {
         background-color: var(--andropogon);
         color: var(--pinebark);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: white;
+    }
+
+    a {
+        color: var(--andropogon);
     }
 }
