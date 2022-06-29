@@ -292,6 +292,10 @@ section {
     padding: calc(var(--gap)*2);
 }
 
+h1 {
+    font-size: 2rem;
+}
+
 h1, h2, h3 {
     text-align: center;
 }
