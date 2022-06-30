@@ -5,6 +5,7 @@ parent:
 description: "Renz's Curriculum vitae"
 tags: []
 level: 0
+created: 
 ---
 
 # *Curriculum vitae*
