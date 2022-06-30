@@ -5,6 +5,7 @@ parent: "projects"
 description: "My work on summarizing evictions and finding social determinants of high-evicted areas."
 tags: ["housing justice", "eviction", "Gainesville", "Alachua County"]
 level: 1
+created: 2022-05-15
 ---
 
 # Evictions of Alachua County

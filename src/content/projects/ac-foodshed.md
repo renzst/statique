@@ -5,6 +5,7 @@ parent: "projects"
 description: "My work determining food deserts and food access quotients of Alachua County and spatialized outcomes"
 tags: ["food justice", "food access", "Gainesville", "Alachua County", "food desert", "food access quotient"]
 level: 1
+created: 2022-02-10
 ---
 
 # Foodshed of Alachua County

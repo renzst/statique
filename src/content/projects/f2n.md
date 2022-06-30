@@ -5,6 +5,7 @@ parent: "projects"
 description: "Farm 2 Neighbors is a hyperlocal food redistribution project of the Kincaid Loop in Southeast Gainesville."
 tags: ["food sovereignty", "food access", "Gainesville", "Alachua County", "nonprofit", "coordination", "mutual aid"]
 level: 1
+created: 2022-03-05
 ---
 
 # Farm 2 Neighbors
