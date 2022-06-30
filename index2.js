@@ -18,13 +18,11 @@ const fs = require('fs');
 const fm = require('front-matter');
 const {marked} = require('marked');
 const {param} = require('./param.js');
+const {walk} = require('./walk.js');
 
 const components = (() => {
 	const filePref = param.components;
 	// if dir does not contain container, footer, header, return error
-
-	let container = fs.readFileSync(filePref + "container.html", "utf-8");
-	container = new JSDOM(container);
 
 	const comps = {};
 
@@ -32,18 +30,10 @@ const components = (() => {
 		comps[f] = () => JSDOM.fragment(fs.readFileSync(filePref + f + ".html", "utf-8"));
 	}
 
-	comps["container"] = container;
+	comps["container"] = () => new JSDOM(fs.readFileSync(filePref + "container.html", "utf-8"));
 
 	return comps;
 })();
-
-// JSDOM Fragment to JSDOM Fragment
-const fragmentCopy = (fragment) => {
-	let f = fragment.firstChild.outerHTML;
-	f = JSDOM.fragment(f);
-
-	return f;
-}
 
 // returns as front-matter object with .body as JSDOM
 // with FM attributes separate from body
@@ -59,7 +49,7 @@ function MDtoFemDom(data) {
 
 // from an article page, returns a full femDom object with body = JSDOM object
 const simpleArticle = (femDom) => {
-	const container = components.container;
+	const container = components.container();
 	const wrapperNode = container.window.document.querySelector("#wrapper");
 	const header = components.header();
 	const footer = components.footer();
@@ -70,29 +60,84 @@ const simpleArticle = (femDom) => {
 		wrapperNode.appendChild(sec);
 	};
 
+	container.window.document.title = param.titlePrefix + femDom.attributes.title;
+
 	femDom.body = container;
 
 	return femDom;
 }
 
-function writeFemDom(femdom) {
-	let fileName = param.dist + femdom.attributes.id + ".html";
+// creates a new carousel using a label (need to create with characteristic of a femdom)
+const carouselArticle = (label, desc, level = 0) => {
+	const container = components.container();
+	const wrapperNode = container.window.document.querySelector("#wrapper");
+	const header = components.header();
+	const footer = components.footer();
+
+	const article = components.carousel();
+	article.querySelector("h1").textContent = label;
+
+	for (let sec of [header, article, footer]) {
+		wrapperNode.append(sec);
+	}
+
+	container.window.document.title = param.titlePrefix + label
+
+	return {
+		attributes: {
+			title: label,
+			id: label.toLowerCase(),
+			description: desc,
+			level,
+		}
+	}
+}
+
+function writeFemDom(femdom, prefix) {
+	if (!fs.existsSync(param.dist + prefix)) {
+		let tempDist = param.dist + prefix;
+		console.log(`Creating ${tempDist}...`);
+		fs.mkdirSync(tempDist);
+	}
+	let fileName = param.dist + prefix + femdom.attributes.id + ".html";
+
 	let html = femdom.body.serialize();
 
+	console.log(`Writing ${fileName}...`);
 	fs.writeFileSync(fileName, html);
 
 }
 
+const prefixFile = (str) => {
+	str = str.replace(param.src, "");
+	let prefix = str.match("^.*\/");
+	prefix = prefix === null ? "" : prefix[0];
+	let file = str.replace(prefix, "");
+
+	return {file, prefix};
+}
+
+
+
 const main = () => {
-	const files = fs.readdirSync(param.src).filter(x => x.endsWith(".md"));
+	// create static components
+	let dirContents = walk(param.src).filter(x => x.endsWith(".md"));
+	const files = dirContents.map(x => prefixFile(x));
 
 	for (let file of files) {
-		const data = fs.readFileSync(param.src + file, "utf-8");
+		const data = fs.readFileSync(param.src + file.prefix + file.file, "utf-8");
 		const femDom = MDtoFemDom(data);
 	
 		const article = simpleArticle(femDom);
-		writeFemDom(article);
+		writeFemDom(article, file.prefix);
 	}
+	
+	// create projects page
+	const projects = carouselArticle("Projects", "A summary of my major projects", 0);
+	
 }
 
-main();
+const femDom = MDtoFemDom(fs.readFileSync("src/content/index.md", "utf-8"))
+console.log(femDom)
+
+// main();
