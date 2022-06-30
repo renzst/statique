@@ -1,6 +1,6 @@
 ---
 title: "Evictions of Alachua County"
-id: "f2n"
+id: "ac-evictions"
 parent: "projects"
 description: "My work on summarizing evictions and finding social determinants of high-evicted areas."
 tags: ["housing justice", "eviction", "Gainesville", "Alachua County"]
