@@ -28,18 +28,18 @@ const components = (() => {
 
 	const comps = {};
 
-	for (let f of ["header.html", "footer.html", "carousel.html"]) {
-		comps[f] = JSDOM.fragment(fs.readFileSync(filePref + f, "utf-8"));
+	for (let f of ["header", "footer", "carousel"]) {
+		comps[f] = () => JSDOM.fragment(fs.readFileSync(filePref + f + ".html", "utf-8"));
 	}
 
-	comps[container] = container;
+	comps["container"] = container;
 
 	return comps;
 })();
 
 // JSDOM Fragment to JSDOM Fragment
 const fragmentCopy = (fragment) => {
-	let f = fragment.outerHTML;
+	let f = fragment.firstChild.outerHTML;
 	f = JSDOM.fragment(f);
 
 	return f;
@@ -61,8 +61,8 @@ function MDtoFemDom(data) {
 const simpleArticle = (femDom) => {
 	const container = components.container;
 	const wrapperNode = container.window.document.querySelector("#wrapper");
-	const header = fragmentCopy(components.header);
-	const footer = fragmentCopy(components.footer);
+	const header = components.header();
+	const footer = components.footer();
 
 	const article = femDom.body;
 
@@ -76,21 +76,23 @@ const simpleArticle = (femDom) => {
 }
 
 function writeFemDom(femdom) {
-	let fileName = femdom.attributes.id + ".html";
-	let html = femdom.body.outerHTML;
+	let fileName = param.dist + femdom.attributes.id + ".html";
+	let html = femdom.body.serialize();
 
 	fs.writeFileSync(fileName, html);
 
 }
 
 const main = () => {
-	file = "index.md";
-	const data = fs.readFileSync(param.src + file, "utf-8");
-	let index = MDtoFemDom(data);
+	const files = fs.readdirSync(param.src).filter(x => x.endsWith(".md"));
 
-	let article = simpleArticle(index);
-
-	writeFemDom(article);
+	for (let file of files) {
+		const data = fs.readFileSync(param.src + file, "utf-8");
+		const femDom = MDtoFemDom(data);
+	
+		const article = simpleArticle(femDom);
+		writeFemDom(article);
+	}
 }
 
 main();
