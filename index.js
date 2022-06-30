@@ -3,7 +3,6 @@ const { JSDOM } = jsdom;
 const fs = require('fs');
 const fm = require('front-matter');
 const {marked} = require('marked');
-
 const prm = require('./config.js');
 
 const createHTMLFragment = (file, prefix) => {
