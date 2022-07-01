@@ -48,16 +48,16 @@ function MDtoFemDom(data) {
 }
 
 const menuItems = () => {
-	const mds = fs.readdirSync(param.src, "utf-8").filter(x => x.endsWith(".md"))
-	const parseds = mds.map(x => fm(x)).filter(x => x.attributes.level <= 0).sort((a,b) => a.attributes.level < b.attributes.level ? -1 : 1);
+	const mds = fs.readdirSync(param.src).filter(x => x.endsWith(".md"))
+	let parseds = mds.map(x => fm(fs.readFileSync(param.src + x, "utf-8")));
+	parseds = parseds.filter(x => x.attributes.level <= 0).sort((a,b) => a.attributes.level < b.attributes.level ? -1 : 1);
 	const menuItems = parseds.map(x => {
-		JSDOM.fragment(
+		return JSDOM.fragment(
 			`
-			<li><a href=${x.id + ".html"}>${x.title}</a></li>
+			<li><a href=${x.attributes.id + ".html"}>${x.attributes.title}</a></li>
 			`
 		)
 	});
-
 	// manual add for now
 	menuItems.push(JSDOM.fragment(
 		`
@@ -76,6 +76,7 @@ const simpleArticle = (femDom) => {
 	const header = components.header();
 	const menu = header.querySelector("#mainmenu > ul");
 	const mItems = menuItems();
+	console.log(mItems);
 	for (let item of mItems) {
 		menu.appendChild(item);
 	}
