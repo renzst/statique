@@ -42,16 +42,44 @@ function MDtoFemDom(data) {
 	const parsed = fm(data);
 	parsed.body = marked.parse(parsed.body);
 	parsed.body = JSDOM.fragment(
-		`<main><article class="single">${parsed.body}</article></main>`
+		`<main><article class="single card">${parsed.body}</article></main>`
 	);
 	return parsed;
 }
+
+const menuItems = () => {
+	const mds = fs.readdirSync(param.src, "utf-8").filter(x => x.endsWith(".md"))
+	const parseds = mds.map(x => fm(x)).filter(x => x.attributes.level <= 0).sort((a,b) => a.attributes.level < b.attributes.level ? -1 : 1);
+	const menuItems = parseds.map(x => {
+		JSDOM.fragment(
+			`
+			<li><a href=${x.id + ".html"}>${x.title}</a></li>
+			`
+		)
+	});
+
+	// manual add for now
+	menuItems.push(JSDOM.fragment(
+		`
+		<li><a href=projects.html">Projects</a></li>
+		`
+	))
+
+	return menuItems
+
+};
 
 // from an article page, returns a full femDom object with body = JSDOM object
 const simpleArticle = (femDom) => {
 	const container = components.container();
 	const wrapperNode = container.window.document.querySelector("#wrapper");
 	const header = components.header();
+	const menu = header.querySelector("#mainmenu > ul");
+	const mItems = menuItems();
+	for (let item of mItems) {
+		menu.appendChild(item);
+	}
+
 	const footer = components.footer();
 
 	const article = femDom.body;
@@ -68,32 +96,62 @@ const simpleArticle = (femDom) => {
 }
 
 // creates a new carousel using a label (need to create with characteristic of a femdom)
-const carouselArticle = (label, desc, level = 0) => {
+const carouselArticle = (carouselParams) => {
 	const container = components.container();
 	const wrapperNode = container.window.document.querySelector("#wrapper");
 	const header = components.header();
+	const menu = header.querySelector("#mainmenu > ul");
+	const mItems = menuItems();
+	for (let item of mItems) {
+		menu.appendChild(item);
+	}
 	const footer = components.footer();
 
 	const article = components.carousel();
-	article.querySelector("h1").textContent = label;
+	article.querySelector("h1").textContent = carouselParams.label;
 
 	for (let sec of [header, article, footer]) {
 		wrapperNode.append(sec);
 	}
 
-	container.window.document.title = param.titlePrefix + label
+	container.window.document.title = param.titlePrefix + carouselParams.label
 
 	return {
 		attributes: {
-			title: label,
-			id: label.toLowerCase(),
-			description: desc,
-			level,
+			title: carouselParams.label,
+			id: carouselParams.id,
+			description: carouselParams.desc,
+			level: carouselParams.level,
+		},
+		body: container,
+		carousel: {
+			dir: carouselParams.dir,
 		}
 	}
 }
 
-function writeFemDom(femdom, prefix) {
+function populateCarousel(femDom) {
+	const dir = param.src + femDom.carousel.dir;
+	const sources = fs.readdirSync(dir);
+	const fms = sources.map(x => fm(fs.readFileSync(dir+x, "utf-8"))["attributes"]);
+
+	const carouselNode = femDom.body.window.document.querySelector("article");
+
+	for (let fm of fms) {
+		let frag = JSDOM.fragment(
+		`
+		<section id="${fm.id}" class="card horse collapsible collapsed">
+			<h2>${fm.title}</h2>
+			<p>${fm.description}</p>
+			<a class="prominent" href=${femDom.carousel.dir + fm.id + ".html"}>Read more</a>
+		</section>
+		`
+		)
+		carouselNode.appendChild(frag);
+	}
+}
+
+function writeFemDom(femdom, prefix = "") {
 	if (!fs.existsSync(param.dist + prefix)) {
 		let tempDist = param.dist + prefix;
 		console.log(`Creating ${tempDist}...`);
@@ -132,12 +190,13 @@ const main = () => {
 		writeFemDom(article, file.prefix);
 	}
 	
-	// create projects page
-	const projects = carouselArticle("Projects", "A summary of my major projects", 0);
-	
+	// create carousels
+	for (let c in param.carousels) {
+		let cParams = param.carousels[c];;
+		const carousel = carouselArticle(cParams);
+		populateCarousel(carousel);
+		writeFemDom(carousel);
+	}
 }
 
-const femDom = MDtoFemDom(fs.readFileSync("src/content/index.md", "utf-8"))
-console.log(femDom)
-
-// main();
+main();
