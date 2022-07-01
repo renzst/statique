@@ -61,7 +61,7 @@ const menuItems = () => {
 	// manual add for now
 	menuItems.push(JSDOM.fragment(
 		`
-		<li><a href=projects.html">Projects</a></li>
+		<li><a href=projects.html>Projects</a></li>
 		`
 	))
 
@@ -76,7 +76,6 @@ const simpleArticle = (femDom) => {
 	const header = components.header();
 	const menu = header.querySelector("#mainmenu > ul");
 	const mItems = menuItems();
-	console.log(mItems);
 	for (let item of mItems) {
 		menu.appendChild(item);
 	}
