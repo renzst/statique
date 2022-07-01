@@ -17,7 +17,7 @@ Free Grocery Store began as a small food diversion project hosted by the [Civic 
 I initially bottom-lined packing/delivering operations and created/maintained a database for our use. Currently, I manage client relations and communications, oversee our incorporation as a non-profit, expansion of our mobile distribution program, and building our website. We are working on a migration of our database onto our server as well as building an app for use by drivers.
 
 <figure class="narrow">
-    <img src="media/renz-fgs.jpg alt="Renz held up by their co-organizers">
+    <img src="/media/renz-fgs.jpg alt="Renz held up by their co-organizers">
     <figcaption>
         Renz (center) being held by other Free Grocery Store organizers. Photo credit <a href="https://instagram.com/gnvfgs">@gnvfgs</a>
     </figcaption>

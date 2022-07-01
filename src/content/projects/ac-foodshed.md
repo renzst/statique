@@ -14,14 +14,14 @@ This is a short project that maps out the locations of food deserts and areas wi
 
 ## Food Deserts
 
-A food desert as (defined by the USDA)[https://www.ers.usda.gov/data-products/food-access-research-atlas/documentation/] is an area where a significant share of residents are far from a supermarket. The USDA offers more specific working definitions, but for the most part I offer relative rather than absolute pictures.
+A food desert as [defined by the USDA](https://www.ers.usda.gov/data-products/food-access-research-atlas/documentation/) is an area where a significant share of residents are far from a supermarket. The USDA offers more specific working definitions, but for the most part I offer relative rather than absolute pictures.
 
 ### Alachua County
 
 At the rural scale, Waldo and Micanopy were found to be much further away from supermarkets than the county average.
 
 <figure>
-    <img src="media/alachua_food-deserts.png" alt="A map of residential food deserts in Alachua County">
+    <img src="/media/alachua_food-deserts.png" alt="A map of residential food deserts in Alachua County">
     <figcaption>
         <p>A map of residential food deserts of Alachua County at larger rural scales of 2.5 miles. Areas in black represent non-residential areas. From blue to orange to yellow represents increasing distance from a supermarket.</p>
     </figcaption>
@@ -32,7 +32,7 @@ At the rural scale, Waldo and Micanopy were found to be much further away from s
 At the urban scale, East Gainesville had the highest average distances away from supermarkets, with many areas more than 2.5 miles away from the nearest supermarket.
 
 <figure>
-    <img src="media/gainesville_food-deserts.png" alt="A map of residential food deserts in Gainesville">
+    <img src="/media/gainesville_food-deserts.png" alt="A map of residential food deserts in Gainesville">
     <figcaption>
         <p>A map of residential food deserts of Gainesville at urban scales of 0.5 miles. Areas in black represent non-residential areas. From blue to orange to yellow represents increasing distance from a supermarket.</p>
         <a href="media/gainesville_food-deserts.png">See the full-resolution map</a>
@@ -50,7 +50,7 @@ Some tidbits to think about while examining these data - the absolute distance d
 At the rural scale, areas across the county with low food access quotients include Waldo, Fairbanks, west Hawthorne, East Gainesville, Archer, Turkey Creek, and High Springs.
 
 <figure>
-    <img src="media/alachua_food-access-quotient.png" alt="Food access quotients in Alachua County">
+    <img src="/media/alachua_food-access-quotient.png" alt="Food access quotients in Alachua County">
     <figcaption>
         <p>A map of food access quotients in Alachua County. Areas in black represent non-residential areas. A lower quotient (in purple) indicates that relative to the average, food access points without fruits and vegetables are much closer/more accessible than supermarkets. A higher quotient (in green) indicates the opposite.</p>
     </figcaption>
@@ -60,7 +60,7 @@ At the rural scale, areas across the county with low food access quotients inclu
 At the urban scale, areas of high food access quotients include much of Northwest Gainesville and a residential area between Tower and Parker Roads in outlying West Gainesville. East Gainesville generally has a low food access quotient.
 
 <figure>
-    <img src="media/gainesvlle_food-access-quotient.png" alt="Food access quotients in Gainesville">
+    <img src="/media/gainesvlle_food-access-quotient.png" alt="Food access quotients in Gainesville">
     <figcaption>
         <p>A map of food access quotients focused on Gainesville. Areas in black represent non-residential areas. A lower quotient (in purple) indicates that relative to the average, food access points without fruits and vegetables are much closer/more accessible than supermarkets. A higher quotient (in green) indicates the opposite.</p>
     </figcaption>

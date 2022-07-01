@@ -53,7 +53,7 @@ August 2015 - December 2016
 
 ### Founder & Coordinator
 
-*at the (Gainesville Free Grocery Store)[https://gnvfgs.org]*
+*at the [Gainesville Free Grocery Store](https://gnvfgs.org)*
 
   - Designed from near-scratch the second largest food pantry in Gainesville by number of users, and the only one offering delivery services
   - Designed a delivery logistics to serve homebound families during the pandemic
@@ -72,7 +72,7 @@ March 2020 and ongoing
 
 ### Campaign Coordinator
 
-*at the (Alachua County Labor Coalition)[https://laborcoalition.org]*
+*at the [Alachua County Labor Coalition](https://laborcoalition.org)*
 
  - Researched and began to develop an eviction diversion program
  - Analyzed eviction data using Excel and QGIS
@@ -86,7 +86,7 @@ September 2022 to December 2022
 
 ### Pantry Operations Coordinator
 
-*at the University of Florida (Hitchcock Field & Fork Pantry)[https://pantry.fieldandfork.ufl.edu]*
+*at the University of Florida [Hitchcock Field & Fork Pantry](https://pantry.fieldandfork.ufl.edu)*
 
   - Managed a team of 6-10 student staff and 1-2 volunteers
   - Designed, implemented, and revised COVID and COVID-reopening operations
@@ -104,7 +104,7 @@ January 2022 to September 2022
 
 ### Data Entry Specialist
 
-*at the University of Florida (Expanded Food and Nutrition Education Program)[https://efnep.ifas.ufl.edu]*
+*at the University of Florida [Expanded Food and Nutrition Education Program](https://efnep.ifas.ufl.edu)*
 
   - Worked with EFNEP in UF IFAS Extension
   - Digitized food survey data in English and Spanish
@@ -130,7 +130,7 @@ January 2019 to December 2019
 
 ### Head Cook
 
-*at the (Oberlin Student Cooperative Association)[http://osca.wilder.oberlin.edu], Fairkid chapter*
+*at the [Oberlin Student Cooperative Association](http://osca.wilder.oberlin.edu), Fairkid chapter*
 
   - Managed a team of 3-5 cooks
   - Designed meals that respected dietary and cultural diversity within the coop membership
@@ -140,7 +140,7 @@ August 2016 to December 2016
 
 ### Dining and Loose Ends Coordinator
 
-*at the (Oberlin Student Cooperative Association)[http://osca.wilder.oberlin.edu], Fairkid chapter*
+*at the [Oberlin Student Cooperative Association](http://osca.wilder.oberlin.edu), Fairkid chapter*
 
   - Co-facilitated discussions in the coop on day-to-day updates and business, policy changes, ethical food sourcing, and accountability processes surrounding racism
   - Managed the leadership team of the cooperative – including treasury, membership, and food safety roles and concerns
@@ -152,7 +152,7 @@ February 2016 to August 2016
 
 ### Membership Coordinator
 
-*at the (Oberlin Student Cooperative Association)[http://osca.wilder.oberlin.edu], Fairkid chapter*
+*at the [Oberlin Student Cooperative Association](http://osca.wilder.oberlin.edu), Fairkid chapter*
 
   - Managed changes to the cooperative roster, including additions and dismissals
   - Managed attendance and discipline for work hours
@@ -164,10 +164,10 @@ August 2015 to December 2015
 
 ### Other experiences
 
-  - Volunteer at (Real Food Challenge)[https://www.realfoodchallenge.org] UW
+  - Volunteer at [Real Food Challenge](https://www.realfoodchallenge.org) UW
     - Spread awareness about food system sustainability issues in campus purchasing through protest and social media.
     - September 2018 to August 2019
-  - Volunteer at (ASUW Student Food Cooperative)[https://sfc.asuw.org]
+  - Volunteer at [ASUW Student Food Cooperative](https://sfc.asuw.org)
     - Helped run a student bulk buying food store focused on sustainability
     - January 2018 through June 2019
   - Cashier at Whole Foods Market from September 2018 to March 2019
